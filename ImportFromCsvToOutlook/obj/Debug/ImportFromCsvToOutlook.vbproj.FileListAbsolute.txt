@@ -30,4 +30,3 @@ S:\vcs\git\inmethod\VisualStudio\ImportFromCsvToOutlook\ImportFromCsvToOutlook\o
 S:\vcs\git\inmethod\VisualStudio\ImportFromCsvToOutlook\ImportFromCsvToOutlook\obj\Debug\ImportFromCsvToOutlook.exe
 S:\vcs\git\inmethod\VisualStudio\ImportFromCsvToOutlook\ImportFromCsvToOutlook\obj\Debug\ImportFromCsvToOutlook.xml
 S:\vcs\git\inmethod\VisualStudio\ImportFromCsvToOutlook\ImportFromCsvToOutlook\obj\Debug\ImportFromCsvToOutlook.pdb
-S:\vcs\git\inmethod\VisualStudio\ImportFromCsvToOutlook\ImportFromCsvToOutlook\obj\Debug\ImportFromCsvToOutlook.vbprojAssemblyReference.cache
