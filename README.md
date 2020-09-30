@@ -1,5 +1,6 @@
 # ImportFromCsvToOutlook    
 * Import contacts to outlook (2016 , 2019)     
+  This APP will read csv file that export from active directory and import to contacts of outlook 2016 or 2016     
 
 ### Prerequisite    
 * Develop    
