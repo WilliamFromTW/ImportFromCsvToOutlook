@@ -2,9 +2,13 @@
 * Import contacts to outlook (2016 , 2019)     
 
 ### Prerequisite    
-* Active Directory 2008R2 or above
-* visual studio 2019 community version
-* outlook 2016 , 2019
+* Develop    
+  visual studio 2019 community version    
+  - reference outlook module (lib)    
+* server     
+  Active Directory 2008R2 or above
+* User Client    
+  outlook 2016 , 2019
 
 ### Export vcs From Active Directory by power shell
 Command    
