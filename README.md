@@ -13,7 +13,7 @@
 
 ### Export vcs From Active Directory by power shell
 Command    
->Get-ADUser -Filter 'mail -like "*<domain>"' -SearchBase "<search base>"  -Properties * | Select -Property   DisplayName,GivenName,Surname,mail,Title,Department,Office | Export-CSV "<csv file location>" -NoTypeInformation -Encoding UTF8    
+>Get-ADUser -Filter 'mail -like "*\<domain\>"' -SearchBase "\<search base\>"  -Properties * | Select -Property   DisplayName,GivenName,Surname,mail,Title,Department,Office | Export-CSV "\<csv file location\>" -NoTypeInformation -Encoding UTF8    
 
 Example    
 >Get-ADUser -Filter 'mail -like "*test.com"' -SearchBase "OU=taipei,DC=test,DC=com"  -Properties * | Select -Property   DisplayName,GivenName,Surname,mail,Title,Department,Office | Export-CSV "c:\aaa.csv" -NoTypeInformation -Encoding UTF8    
