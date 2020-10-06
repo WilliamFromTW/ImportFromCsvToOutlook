@@ -20,6 +20,7 @@ Public Class MainForm
         Dim iCount = afolderItems.Count
         Dim sTypeName As String
         Dim sItemObject As Outlook.ContactItem
+        Dim sTemp As String
 
         For x = 1 To iCount
             sTypeName = TypeName(afolderItems.Item(x))
@@ -31,10 +32,11 @@ Public Class MainForm
 
 
                 'Check if the distribution list exists
-                If String.IsNullOrEmpty(sItemObject.FirstName) Or String.IsNullOrEmpty(strMyToken(0)) Then
+                If String.IsNullOrEmpty(sItemObject.FirstName) Or String.IsNullOrEmpty(strMyToken(3)) Then
                     Continue For
                 End If
-                If strMyToken(0).Replace("""", "").Equals(sItemObject.FirstName) Then
+                sTemp = strMyToken(3).Replace("""", "")
+                If strMyToken(3).Replace("""", "").Equals(sItemObject.Email1Address) Then
                     bList = True
                     Exit For
                 End If

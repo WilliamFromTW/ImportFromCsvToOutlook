@@ -20,6 +20,7 @@ S:\vcs\git\inmethod\VisualStudio\ImportFromCsvToOutlook\ImportFromCsvToOutlook\b
 S:\vcs\git\inmethod\VisualStudio\ImportFromCsvToOutlook\ImportFromCsvToOutlook\bin\Debug\ImportFromCsvToOutlook.exe
 S:\vcs\git\inmethod\VisualStudio\ImportFromCsvToOutlook\ImportFromCsvToOutlook\bin\Debug\ImportFromCsvToOutlook.pdb
 S:\vcs\git\inmethod\VisualStudio\ImportFromCsvToOutlook\ImportFromCsvToOutlook\bin\Debug\ImportFromCsvToOutlook.xml
+S:\vcs\git\inmethod\VisualStudio\ImportFromCsvToOutlook\ImportFromCsvToOutlook\obj\Debug\ImportFromCsvToOutlook.vbprojAssemblyReference.cache
 S:\vcs\git\inmethod\VisualStudio\ImportFromCsvToOutlook\ImportFromCsvToOutlook\obj\Debug\ImportFromCsvToOutlook.vbproj.ResolveComReference.cache
 S:\vcs\git\inmethod\VisualStudio\ImportFromCsvToOutlook\ImportFromCsvToOutlook\obj\Debug\ImportFromCsvToOutlook.MainForm.resources
 S:\vcs\git\inmethod\VisualStudio\ImportFromCsvToOutlook\ImportFromCsvToOutlook\obj\Debug\ImportFromCsvToOutlook.Resources.resources
