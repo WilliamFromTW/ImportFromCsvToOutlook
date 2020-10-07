@@ -17,3 +17,11 @@ Command
 
 Example    
 >Get-ADUser -Filter 'mail -like "*test.com"' -SearchBase "OU=taipei,DC=test,DC=com"  -Properties * | Select -Property   DisplayName,GivenName,Surname,mail,Title,Department,Office | Export-CSV "c:\aaa.csv" -NoTypeInformation -Encoding UTF8    
+
+
+### command mode    
+Default installed path     
+> C:\InMethod\ImportContactsToOutlook    
+
+Example     
+> C:\InMethod\ImportContactsToOutlook\ImportFromCsvToOutlook.exe   c:\xxx.csv 
