@@ -105,42 +105,54 @@ Public Class MainForm
     End Function
 
     Private Sub Form1_Load_1(sender As Object, e As EventArgs) Handles MyBase.Load
-        MsgBox("This APP will import contacts to outlook (2016,2019) , please select csv file ")
-        ffile = New OpenFileDialog
-        If (ffile.ShowDialog().Equals(DialogResult.OK)) Then
-            Dim filePathstring = ffile.FileName
+        Dim iArgsLength = Environment.GetCommandLineArgs.Length
+        Dim filePathstring As String
 
-            Dim fileReader As System.IO.StreamReader
-            fileReader = My.Computer.FileSystem.OpenTextFileReader(filePathstring)
-            Dim stringReader As String
-            Dim iCount As Integer = 0
-            While Not fileReader.EndOfStream
-                stringReader = fileReader.ReadLine()
-                iCount += 1
-
-                If (iCount = 1) Then
-                    Continue While
-                End If
-
-                'MsgBox("The first line of the file is " & stringReader)
-                Dim myToken() As String = stringReader.Split(",")
-
-                If myToken.Length <> 7 Then
-                    MsgBox("line # = " + CStr(iCount) + " in excel is not correct, app will close")
-                    Me.Close()
-                Else
-                    CreateDistributionList(myToken)
-                End If
-
-            End While
-            MsgBox("Import contacts finished!")
-            Me.Close()
-
+        If iArgsLength > 1 Then
+            'MsgBox(Environment.GetCommandLineArgs(1))
+            filePathstring = Environment.GetCommandLineArgs(1)
         Else
-            Me.Close()
-
-
+            MsgBox("This APP will import contacts to outlook (2016,2019) , please select csv file ")
+            ffile = New OpenFileDialog
+            If (ffile.ShowDialog().Equals(DialogResult.OK)) Then
+                filePathstring = ffile.FileName
+            Else
+                Me.Close()
+            End If
         End If
+        If String.IsNullOrEmpty(filePathstring) Then
+            Me.Close()
+        End If
+
+        Dim fileReader As System.IO.StreamReader
+        fileReader = My.Computer.FileSystem.OpenTextFileReader(filePathstring)
+        Dim stringReader As String
+        Dim iCount As Integer = 0
+        While Not fileReader.EndOfStream
+            stringReader = fileReader.ReadLine()
+            iCount += 1
+
+            If (iCount = 1) Then
+                Continue While
+            End If
+
+            'MsgBox("The first line of the file is " & stringReader)
+            Dim myToken() As String = stringReader.Split(",")
+
+            If myToken.Length <> 7 Then
+                If iArgsLength = 1 Then
+                    MsgBox("line # = " + CStr(iCount) + " in excel is not correct, app will close")
+                End If
+                Me.Close()
+            Else
+                CreateDistributionList(myToken)
+            End If
+
+        End While
+        If iArgsLength = 1 Then
+            MsgBox("Import contacts finished!")
+        End If
+        Me.Close()
 
     End Sub
 End Class

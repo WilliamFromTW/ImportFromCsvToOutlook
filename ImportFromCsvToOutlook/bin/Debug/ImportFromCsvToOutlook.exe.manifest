@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ImportFromCsvToOutlook.exe" size="20472">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ImportFromCsvToOutlook.exe" size="20984">
       <assemblyIdentity name="ImportFromCsvToOutlook" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>wiC/XRD4IzkaDmZ2YLERHQ3zrVQvGyXaTTqzTUIrLtc=</dsig:DigestValue>
+        <dsig:DigestValue>3XydL94saXt6Fu6yYoWD6QhqOMDza3ESj783cYNxHvQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
