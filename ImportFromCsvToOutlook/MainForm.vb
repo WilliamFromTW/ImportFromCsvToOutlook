@@ -1,4 +1,6 @@
 ﻿Imports System.IO
+Imports System.Net
+Imports System.Net.Http
 Imports System.Reflection
 Imports System.Runtime.InteropServices
 Imports Microsoft.Office.Interop
@@ -103,19 +105,50 @@ Public Class MainForm
         application = New Outlook.Application()
         Return application
     End Function
+    Function getFileContentsFromHTTP(csvfile As String) As StringReader
 
+        ' bypass private sign cert files
+        ServicePointManager.ServerCertificateValidationCallback = Function(s, c, h, e) True
+        Dim strReader As New StringReader("")
+        Using client As HttpClient = New HttpClient()
+            Using response As HttpResponseMessage = client.GetAsync(csvfile).Result
+
+                Using content As HttpContent = response.Content
+                    ' Get contents of page as a String.
+                    Dim result As String = content.ReadAsStringAsync().Result
+                    If result IsNot Nothing Then
+                        strReader = New StringReader(result)
+
+                    End If
+                End Using
+            End Using
+        End Using
+        Return strReader
+    End Function
     Private Sub Form1_Load_1(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim iArgsLength = Environment.GetCommandLineArgs.Length
-        Dim filePathstring As String
+        Dim filePathstring As String = ""
+        Dim fileReader As System.IO.StreamReader
+        Dim strFileContents As StringReader = New StringReader("")
+
+
 
         If iArgsLength > 1 Then
             'MsgBox(Environment.GetCommandLineArgs(1))
             filePathstring = Environment.GetCommandLineArgs(1)
+            If filePathstring.ToLower.IndexOf("http") = -1 Then
+                fileReader = My.Computer.FileSystem.OpenTextFileReader(filePathstring)
+                strFileContents = New StringReader(fileReader.ReadToEnd)
+            Else
+                strFileContents = getFileContentsFromHTTP(filePathstring)
+            End If
         Else
-            MsgBox("This APP will import contacts to outlook (2016,2019) , please select csv file ")
+            MsgBox("import contacts to outlook (2013 or above) , please select source file(csv)")
             ffile = New OpenFileDialog
             If (ffile.ShowDialog().Equals(DialogResult.OK)) Then
                 filePathstring = ffile.FileName
+                fileReader = My.Computer.FileSystem.OpenTextFileReader(filePathstring)
+                strFileContents = New StringReader(fileReader.ReadToEnd)
             Else
                 Me.Close()
             End If
@@ -124,12 +157,11 @@ Public Class MainForm
             Me.Close()
         End If
 
-        Dim fileReader As System.IO.StreamReader
-        fileReader = My.Computer.FileSystem.OpenTextFileReader(filePathstring)
         Dim stringReader As String
         Dim iCount As Integer = 0
-        While Not fileReader.EndOfStream
-            stringReader = fileReader.ReadLine()
+        While strFileContents IsNot Nothing And strFileContents.Peek <> -1
+
+            stringReader = strFileContents.ReadLine()
             iCount += 1
 
             If (iCount = 1) Then
