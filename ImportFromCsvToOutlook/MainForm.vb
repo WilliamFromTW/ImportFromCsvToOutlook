@@ -132,29 +132,39 @@ Public Class MainForm
         Dim strFileContents As StringReader = New StringReader("")
 
 
+        Try
+            If iArgsLength > 1 Then
+                'MsgBox(Environment.GetCommandLineArgs(1))
+                filePathstring = Environment.GetCommandLineArgs(1)
+                If filePathstring.ToLower.IndexOf("http") = -1 Then
+                    fileReader = My.Computer.FileSystem.OpenTextFileReader(filePathstring)
+                    strFileContents = New StringReader(fileReader.ReadToEnd)
+                Else
+                    strFileContents = getFileContentsFromHTTP(filePathstring)
+                End If
+            Else
+                MsgBox("import contacts to outlook (2013 or above) , please select source file(csv)")
+                ffile = New OpenFileDialog
+                If (ffile.ShowDialog().Equals(DialogResult.OK)) Then
+                    filePathstring = ffile.FileName
+                    fileReader = My.Computer.FileSystem.OpenTextFileReader(filePathstring)
+                    strFileContents = New StringReader(fileReader.ReadToEnd)
+                Else
+                    Me.Close()
+                    Return
+                End If
+            End If
+        Catch fileException As System.Exception
+            If iArgsLength = 1 Then
+                MsgBox("read file failed")
+            End If
+            Me.Close()
+            Return
+        End Try
 
-        If iArgsLength > 1 Then
-            'MsgBox(Environment.GetCommandLineArgs(1))
-            filePathstring = Environment.GetCommandLineArgs(1)
-            If filePathstring.ToLower.IndexOf("http") = -1 Then
-                fileReader = My.Computer.FileSystem.OpenTextFileReader(filePathstring)
-                strFileContents = New StringReader(fileReader.ReadToEnd)
-            Else
-                strFileContents = getFileContentsFromHTTP(filePathstring)
-            End If
-        Else
-            MsgBox("import contacts to outlook (2013 or above) , please select source file(csv)")
-            ffile = New OpenFileDialog
-            If (ffile.ShowDialog().Equals(DialogResult.OK)) Then
-                filePathstring = ffile.FileName
-                fileReader = My.Computer.FileSystem.OpenTextFileReader(filePathstring)
-                strFileContents = New StringReader(fileReader.ReadToEnd)
-            Else
-                Me.Close()
-            End If
-        End If
         If String.IsNullOrEmpty(filePathstring) Then
             Me.Close()
+            Return
         End If
 
         Dim stringReader As String
@@ -185,6 +195,6 @@ Public Class MainForm
             MsgBox("Import contacts finished!")
         End If
         Me.Close()
-
+        Return
     End Sub
 End Class
