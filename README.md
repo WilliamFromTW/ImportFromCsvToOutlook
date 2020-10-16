@@ -14,7 +14,7 @@
   outlook 2013 or above    
 
 ### Export vcs From Active Directory by power shell
-Command    
+Command (notice: csv file should not have empty line at end of file)    
 >Get-ADUser -Filter 'mail -like "*\<domain\>"' -SearchBase "\<search base\>"  -Properties * | Select -Property   DisplayName,GivenName,Surname,mail,Title,Department,Office | Export-CSV "\<csv file location\>" -NoTypeInformation -Encoding UTF8    
 
 Example    
